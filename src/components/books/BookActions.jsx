@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import Search from "./Search";
 import Sort from "./Sort";
 
-const BookActions = () => {
+const BookActions = ({onSearch,onSelect}) => {
   return (
     <div className="mb-8 lg:mb-10 mx-auto max-w-7xl">
       <div className="mx-auto flex items-end justify-between max-md:max-w-[95%] max-md:flex-col max-md:items-start max-md:space-y-4">
@@ -11,10 +12,10 @@ const BookActions = () => {
             Trending Books of the Year
           </h2>
 
-          <Search></Search>
+          <Search onSearch={onSearch}></Search>
         </div>
 
-        <Sort></Sort>
+        <Sort onSelect={onSelect}></Sort>
       </div>
     </div>
   );
