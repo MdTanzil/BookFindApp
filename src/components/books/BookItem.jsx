@@ -2,7 +2,15 @@
 import { FaStar } from "react-icons/fa";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import IMG from "../../assets/book.png";
-const BookItem = ({ book,handleFavorite }) => {
+const BookItem = ({ book, handleFavorite }) => {
+  const starRating = () => {
+    let arr = [];
+    for (let i = 0; i < book.rating; i++) {
+      arr.push(<FaStar color="yellow" key={i} />);
+    }
+
+    return arr;
+  };
   return (
     <div className="space-y-3 min-h-full">
       <div className="flex items-center justify-center rounded-md border border-[#324251]/30 bg-white p-4 ">
@@ -17,12 +25,9 @@ const BookItem = ({ book,handleFavorite }) => {
         <div className="flex items-center justify-between">
           <h4 className="text-lg font-bold lg:text-xl">${book.price}</h4>
           <div className="flex items-center space-x-1">
-            <FaStar color="yellow"></FaStar>
-            <FaStar color="yellow"></FaStar>
-            <FaStar color="yellow"></FaStar>
-            <FaStar color="yellow"></FaStar>
+            {starRating()}
 
-            <span className="text-xs lg:text-sm">(4 Star)</span>
+            <span className="text-xs lg:text-sm">({book.rating} Star)</span>
           </div>
         </div>
 
@@ -44,7 +49,10 @@ const BookItem = ({ book,handleFavorite }) => {
             </svg>
             Add to Cart
           </button>
-          <button onClick={()=>handleFavorite(book)} className="flex min-w-[132px] items-center justify-center gap-1 rounded-md bg-[#1C4336]/[14%] py-1.5 text-[#1C4336] transition-all hover:bg-[#1C4336]/[24%] lg:py-1.5">
+          <button
+            onClick={() => handleFavorite(book)}
+            className="flex min-w-[132px] items-center justify-center gap-1 rounded-md bg-[#1C4336]/[14%] py-1.5 text-[#1C4336] transition-all hover:bg-[#1C4336]/[24%] lg:py-1.5"
+          >
             {book.isFavorite ? (
               <MdFavorite></MdFavorite>
             ) : (
